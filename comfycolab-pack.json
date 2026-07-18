@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "id": "3dgs",
+  "version": "0.1.0-dev.0",
+  "display_name": "ComfyColab 3DGS",
+  "compatibility": {
+    "core_manifest_api": 1,
+    "comfyui": {
+      "compatible_refs": [
+        "8b099de36acd81acd1afa3b5442951dc847e0a52"
+      ],
+      "tested_refs": [
+        "8b099de36acd81acd1afa3b5442951dc847e0a52"
+      ]
+    }
+  },
+  "node_roots": [
+    {
+      "source": "custom_nodes/ComfyColab-Triposplat",
+      "target": "ComfyColab-Triposplat"
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "triposplat-model",
+      "kind": "huggingface",
+      "repository": "VAST-AI/TripoSplat",
+      "ref": "de3b99ab2627d565a8d5fc40f2db52557b82b974",
+      "destination": "comfyui-models/triposplat",
+      "scope": "comfyui",
+      "install_phase": "lazy",
+      "artifacts": [
+        {
+          "path": "background_removal/birefnet.safetensors",
+          "bytes": 444473596,
+          "sha256": "9ab37426bf4de0567af6b5d21b16151357149139362e6e8992021b8ce356a154"
+        },
+        {
+          "path": "clip_vision/dino_v3_vit_h.safetensors",
+          "bytes": 1681247696,
+          "sha256": "a29ef35101a16966972a0d50732a6f3a608ff7cfffb2afa9bbe9007cb842cc53"
+        },
+        {
+          "path": "diffusion_models/triposplat_fp16.safetensors",
+          "bytes": 741106994,
+          "sha256": "c870b97ac1d6bc9177608a5ec625e19ef9f3c5019aa68f64b0fb7803abcd6d20"
+        },
+        {
+          "path": "vae/flux2-vae.safetensors",
+          "bytes": 336213556,
+          "sha256": "d64f3a68e1cc4f9f4e29b6e0da38a0204fe9a49f2d4053f0ec1fa1ca02f9c4b5"
+        },
+        {
+          "path": "vae/triposplat_vae_decoder_fp16.safetensors",
+          "bytes": 576148442,
+          "sha256": "ed0d0c3d43b599e326845d0ec70f3cf77be9a55e2d97627ac3b34d2830763cc8"
+        }
+      ]
+    }
+  ],
+  "patches": [],
+  "environments": [],
+  "hooks": {
+    "configure": {
+      "path": "runtime/configure.py",
+      "network": "none",
+      "write_roots": []
+    },
+    "doctor": {
+      "path": "runtime/doctor.py",
+      "network": "none",
+      "write_roots": []
+    },
+    "runtime_env": {
+      "path": "runtime/runtime_env.py",
+      "network": "none",
+      "write_roots": []
+    }
+  },
+  "workflows": [
+    "workflows/comfycolab_triposplat_image_to_gaussian_splat.json"
+  ],
+  "probes": [
+    {
+      "phase": "post_clone",
+      "type": "file_symbols",
+      "target": "comfyui",
+      "path": "comfy_extras/nodes_triposplat.py",
+      "symbols": [
+        "TripoSplatPreprocessImage",
+        "TripoSplatConditioning",
+        "TripoSplatSamplingPreview",
+        "VAEDecodeTripoSplat"
+      ]
+    },
+    {
+      "phase": "post_clone",
+      "type": "file_symbols",
+      "target": "comfyui",
+      "path": "comfy_extras/nodes_gaussian_splat.py",
+      "symbols": [
+        "SplatToFile3D",
+        "RenderSplat"
+      ]
+    },
+    {
+      "phase": "post_start",
+      "type": "comfy_node_ids",
+      "values": [
+        "ComfyColabTripoSplatImageToGaussianSplat"
+      ]
+    }
+  ],
+  "health_checks": {
+    "node_ids": [
+      "ComfyColabTripoSplatImageToGaussianSplat"
+    ],
+    "command": [
+      "python",
+      "runtime/doctor.py"
+    ]
+  },
+  "accelerators": [
+    "nvidia"
+  ],
+  "validation_commands": [
+    [
+      "bash",
+      "scripts/check.sh"
+    ]
+  ],
+  "licenses": [
+    {
+      "id": "triposplat-mit",
+      "path": "THIRD_PARTY_NOTICES.md"
+    }
+  ],
+  "readiness": {
+    "namespace": "packs.3dgs",
+    "fields": [
+      "model_revision",
+      "native_capabilities",
+      "output_formats"
+    ]
+  }
+}

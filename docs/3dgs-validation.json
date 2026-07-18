@@ -1,0 +1,26 @@
+{
+  "schema": "comfycolab-3dgs-live-validation-v1",
+  "status": "pending",
+  "profile": "colab-g4",
+  "completedAt": null,
+  "sources": {
+    "comfy": "8b099de36acd81acd1afa3b5442951dc847e0a52",
+    "triposplatModel": "VAST-AI/TripoSplat@de3b99ab2627d565a8d5fc40f2db52557b82b974"
+  },
+  "gate": {
+    "name": "triposplat_fast_65k_file3d_ply",
+    "status": "pending",
+    "evidence": null
+  },
+  "benchmark": {
+    "quality": "Fast — 65K",
+    "gaussianCount": null,
+    "runtimeSeconds": null,
+    "peakVramBytes": null,
+    "plyBytes": null,
+    "plySha256": null,
+    "plyValidated": false,
+    "file3dValidated": false,
+    "outputFormat": "ply"
+  }
+}

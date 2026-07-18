@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "comfycolab-3dgs"
+version = "0.1.0-dev.0"
+description = "ComfyColab Gaussian-splat generation and validation pack."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "ComfyColab contributors" },
+]
+dependencies = []
+
+[tool.setuptools]
+py-modules = []

@@ -21,6 +21,11 @@ symbol probes. `runtime/doctor.py` repeats that capability check when its
 structured context includes `comfyui_root`; standalone local runs report it as
 unchecked rather than making an unsupported claim.
 
+Pinned Hugging Face artifacts use authenticated `huggingface_hub` with
+high-performance Xet first. Public repositories retry anonymously when a saved
+token is stale, then retain the existing resumable HTTP downloader as a
+compatibility fallback.
+
 ## Validation tiers
 
 Local validation is the required first tier:

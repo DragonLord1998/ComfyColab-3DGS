@@ -1,13 +1,14 @@
 {
   "schema": 1,
   "id": "3dgs",
-  "version": "0.1.0-dev.0",
+  "version": "0.1.1-dev.0",
   "display_name": "ComfyColab 3DGS",
   "compatibility": {
     "core_manifest_api": 1,
     "comfyui": {
       "compatible_refs": [
-        "8b099de36acd81acd1afa3b5442951dc847e0a52"
+        "8b099de36acd81acd1afa3b5442951dc847e0a52",
+        "57500fc5bc92566a63f2046824f522cd55c335ca"
       ],
       "tested_refs": [
         "8b099de36acd81acd1afa3b5442951dc847e0a52"
